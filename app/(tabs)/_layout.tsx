@@ -1,37 +1,24 @@
-import { Tabs } from 'expo-router';
+// app/(tabs)/_layout.tsx
 import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import WelcomeScreen from '../components/WelcomeScreen';
+import SignInComponent from '../components/SignInComponent';
+import SignUpForm from '../components/SignUpForm';
+import HomeScreen from '../screens/HomeScreen';
+import AppNavigator from '../navigation/AppNavigator'; // Import your main app navigator
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const Stack = createStackNavigator();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const Layout: React.FC = () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
+    <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="SignIn" component={SignInComponent} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUpForm" component={SignUpForm} options={{ headerShown: false }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="AppNavigator" component={AppNavigator} options={{ headerShown: false }} />
+    </Stack.Navigator>
   );
-}
+};
+
+export default Layout;
