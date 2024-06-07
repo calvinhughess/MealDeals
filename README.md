@@ -1,4 +1,3 @@
-Creating a well-structured README file for your project can significantly enhance its presentation and usability. Here is a suggested structure for your MealDeals app project README:
 
 ### MealDeals App
 
