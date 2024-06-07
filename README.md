@@ -1,5 +1,5 @@
 
-### MealDeals App
+# MealDeals App
 
 MealDeals is a web application designed to scan and identify the best possible food deals, specials, and discounts in the College Park, MD area. The app integrates various functionalities to provide users with a seamless experience in finding and utilizing food deals.
 
@@ -76,25 +76,66 @@ MealDeals is a web application designed to scan and identify the best possible f
 
 ```
 MealDeals/
-├── src/
-│   ├── backend/
+├── app/
+│   ├── auth/
+│   │   ├── firebaseConfig.ts
+│   │   └── signUp.ts
+│   ├── components/
+│   │   ├── SignInComponent.tsx
+│   │   ├── SignUpForm.tsx
+│   │   ├── StepEmail.tsx
+│   │   ├── StepName.tsx
+│   │   ├── StepPassword.tsx
+│   │   ├── StepPhone.tsx
+│   │   ├── StepPreferences.tsx
+│   │   └── WelcomeScreen.tsx
+│   ├── context/
+│   │   └── DealsContext.tsx
+│   ├── navigation/
+│   │   └── AppNavigator.tsx
+│   ├── roles/
+│   │   └── roleManagement.ts
+│   ├── screens/
+│   │   ├── ClaimedDealsScreen.tsx
+│   │   ├── DealDetailsScreen.tsx
+│   │   ├── DealModal.tsx
+│   │   └── HomeScreen.tsx
+│   ├── storage/
+│   │   └── secureStorage.ts
+│   ├── utils/
+│   │   ├── firestoreSync.ts
+│   │   ├── secureStorageUtils.ts
+│   │   └── validation.ts
+│   ├── _layout.tsx
+│   └── index.tsx
+├── backend/
+│   ├── src/
+│   │   ├── .env
+│   │   ├── credentials.json
+│   │   ├── gmail.js
 │   │   ├── server.js
-│   │   └── ...
-│   ├── frontend/
-│   │   ├── public/
-│   │   ├── src/
-│   │   └── ...
-│   └── ...
-├── .env
+│   │   └── token.json
+├── .expo/
+├── assets/
+├── hooks/
+│   └── useColorScheme.ts
+├── node_modules/
+├── scripts/
+├── .gitatttributes
+├── .gitignore
+├── app.json
+├── babel.config.js
+├── expo-env.d.ts
+├── index.js
+├── package-lock.json
 ├── package.json
-└── README.md
+├── README.md
+└── tsconfig.json
 ```
-
----
 
 ## Contact
 
 **Calvin**  
-- Email: [calvinhughes03@gmail.com](mailto:mealdealsdeals@gmail.com)
+- Email: [calvinhughes03@gmail.com](mailto:calvinhughes03@gmail.com)
 - GitHub: [calvinhughess](https://github.com/calvinhughess)
 
