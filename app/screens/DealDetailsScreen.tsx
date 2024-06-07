@@ -1,13 +1,25 @@
-// app/screens/DealDetailsScreen.tsx
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { DealsContext, Deal } from '../context/DealsContext';
+import DealModal from './DealModal';
 
 const DealDetailsScreen: React.FC = () => {
   const { deals, claimDeal } = useContext(DealsContext);
+  const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleSelectDeal = (deal: Deal) => {
+    setSelectedDeal(deal);
+    setModalVisible(true);
+  };
+
+  const handleClaimDeal = (dealId: string) => {
+    claimDeal(dealId);
+    setModalVisible(false);
+  };
 
   const renderItem = ({ item }: { item: Deal }) => (
-    <View style={styles.dealContainer}>
+    <TouchableOpacity style={styles.dealContainer} onPress={() => handleSelectDeal(item)}>
       {item.isClaimed && (
         <View style={styles.overlay}>
           <Image source={require('../../assets/images/checkmark.png')} style={styles.checkmark} />
@@ -16,27 +28,33 @@ const DealDetailsScreen: React.FC = () => {
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
       <Text style={styles.restaurant}>Restaurant: {item.restaurant}</Text>
-      {!item.isClaimed && (
-        <TouchableOpacity
-          style={styles.claimButton}
-          onPress={() => claimDeal(item.id)}
-        >
-          <Text style={styles.claimButtonText}>Claim Deal</Text>
-        </TouchableOpacity>
-      )}
-    </View>
+    </TouchableOpacity>
   );
 
   return (
-    <FlatList
-      data={deals}
-      keyExtractor={(item) => item.id}
-      renderItem={renderItem}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={deals}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      />
+      {selectedDeal && (
+        <DealModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          deal={selectedDeal}
+          onClaimDeal={handleClaimDeal}
+        />
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+  },
   dealContainer: {
     padding: 20,
     marginVertical: 10,
@@ -69,17 +87,6 @@ const styles = StyleSheet.create({
   },
   restaurant: {
     fontStyle: 'italic',
-  },
-  claimButton: {
-    marginTop: 10,
-    paddingVertical: 10,
-    backgroundColor: 'red',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  claimButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
   },
 });
 
