@@ -133,6 +133,8 @@ MealDeals/
 └── tsconfig.json
 ```
 
+## THIS IS A WORK IN PROGRESS. VIDEO DEMONSTRATION WILL BE UPLOADED SHORTLY
+
 ## Contact
 
 **Calvin**  
