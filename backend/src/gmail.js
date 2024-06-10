@@ -10,7 +10,7 @@ let deals = []; // Array to store extracted deals
 
 // Initialize OpenAI API with your API key directly
 const openai = new OpenAI({
-    apiKey: 'sk-proj-slCAMIXCzm8mYz6ffNm7T3BlbkFJQCPIgF1ZPPOAJuMfSKOw',
+    apiKey: 'your-api-key',
 });
 
 function authorize(credentials, callback) {
